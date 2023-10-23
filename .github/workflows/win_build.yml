@@ -10,8 +10,8 @@ jobs:
       matrix:
         include:
           - {chain: mingw32, cc: gcc}
-#          - {chain: mingw64, cc: gcc}
-#          - {chain: clang64, cc: clang}
+          - {chain: mingw64, cc: gcc}
+          - {chain: clang64, cc: clang}
     steps:
       - uses: actions/checkout@v3
       - uses: msys2/setup-msys2@v2
@@ -25,16 +25,18 @@ jobs:
         run: ./configure
       - name: Run make
         run: make
-      - name: Copy dependencies
+      - name: Prepare dist
         run: |
+            mkdir -p dist/$MSYSTEM_CARCH
+            cd dist/$MSYSTEM_CARCH
+            cp ../../cava.exe cava_$MSYSTEM_CARCH.exe
             cp `whereis libfftw3-3.dll | cut -d' ' -f2` .
             cp `whereis libgcc_s_dw2-1.dll | cut -d' ' -f2` .
             cp `whereis libwinpthread-1.dll | cut -d' ' -f2` .
             cp `whereis SDL2.dll | cut -d' ' -f2` .
-      - name: Upload .exe
+      - name: Upload build
         uses: actions/upload-artifact@v3
         with:
           name: cava
           path: |
-            cava.exe
-            *.dll
+            dist/*
