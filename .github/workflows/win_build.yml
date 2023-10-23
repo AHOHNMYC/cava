@@ -28,11 +28,28 @@ jobs:
       - name: Prepare dist
         run: |
             mkdir -p dist/$MSYSTEM_CARCH
+      - name: Prepare dist
+        run: |
+            cd dist/$MSYSTEM_CARCH
+      - name: Prepare dist
+        run: |
             cd dist/$MSYSTEM_CARCH
             cp ../../cava.exe cava_$MSYSTEM_CARCH.exe
+      - name: Prepare dist
+        run: |
+            cd dist/$MSYSTEM_CARCH
             cp `whereis libfftw3-3.dll | cut -d' ' -f2` .
+      - name: Prepare dist
+        run: |
+            cd dist/$MSYSTEM_CARCH
             cp `whereis libwinpthread-1.dll | cut -d' ' -f2` .
+      - name: Prepare dist
+        run: |
+            cd dist/$MSYSTEM_CARCH
             cp `whereis SDL2.dll | cut -d' ' -f2` .
+      - name: Prepare dist
+        run: |
+            cd dist/$MSYSTEM_CARCH
             [ $MSYSTEM = 'MINGW32' ] && cp `whereis libgcc_s_dw2-1.dll | cut -d' ' -f2` .
       - name: Upload build
         uses: actions/upload-artifact@v3
