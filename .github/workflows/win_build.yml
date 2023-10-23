@@ -22,6 +22,7 @@ jobs:
       - name: Generate configure
         run: ./autogen.sh
       - name: Run ./configure
-        run: ./configure
+        run: export CFLAGS=-D_MSC_VER
+             ./configure
       - name: Run make
         run: make CFLAGS='-Werror'
