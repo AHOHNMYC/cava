@@ -9,20 +9,25 @@ cava_CPPFLAGS = -DPACKAGE=\"$(PACKAGE)\" -DVERSION=\"$(VERSION)\" \
            -D_POSIX_SOURCE -D_POSIX_C_SOURCE=200809L -D_XOPEN_SOURCE_EXTENDED \
 	   -DFONTDIR=\"@FONT_DIR@\"
 cava_CFLAGS = -std=c99 -Wall -Wextra -Wno-unused-result -Wno-unknown-warning-option -Wno-maybe-uninitialized -Wno-vla-parameter
+cava_LDADD =
 
 if WINDOWS
     cava_CFLAGS += -D_MSC_VER
+    cava_LDADD += -luser32 -lkernel32 -lOle32
+    cava_SOURCES += input/winscap.c
 else
     cava_SOURCES += input/fifo.c input/shmem.c
 endif
 
 if OSX
     cava_CFLAGS += -DNORT
-    cava_LDADD =
 else
-    cava_LDADD = -lrt
     cava_font_dir = @FONT_DIR@
     cava_font__DATA = cava.psf
+endif
+
+if LINUX
+    cava_LDADD += -lrt
 endif
 
 if ALSA
