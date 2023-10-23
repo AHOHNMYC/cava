@@ -1,11 +1,6 @@
 #define GL_GLEXT_PROTOTYPES 0
-#ifdef _MSC_VER
-#include <GL/glew.h>
-#include <SDL.h>
-#else
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
-#endif
 #include "output/sdl_glsl.h"
 
 #include <stdbool.h>
