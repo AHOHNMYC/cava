@@ -402,7 +402,7 @@ bool load_config(char configPath[PATH_MAX], struct config_params *p, bool colors
     char *configHome = getenv("XDG_CONFIG_HOME");
     if (configHome != NULL) {
         sprintf(cava_config_home, "%s/%s/", configHome, PACKAGE);
-        mkdir(cava_config_home, 0777);
+        mkdir(cava_config_home);
     } else {
 #ifndef _MSC_VER
         configHome = getenv("HOME");
@@ -412,14 +412,14 @@ bool load_config(char configPath[PATH_MAX], struct config_params *p, bool colors
 #endif
         if (configHome != NULL) {
             sprintf(cava_config_home, "%s/%s/", configHome, ".config");
-            mkdir(cava_config_home, 0777);
+            mkdir(cava_config_home);
 
             sprintf(cava_config_home, "%s/%s/%s/", configHome, ".config", PACKAGE);
-            mkdir(cava_config_home, 0777);
+            mkdir(cava_config_home);
         } else {
 #ifndef _MSC_VER
             sprintf(cava_config_home, "/tmp/%s/", PACKAGE);
-            mkdir(cava_config_home, 0777);
+            mkdir(cava_config_home);
 #else
             write_errorf(error, "No HOME found (ERR_HOMELESS), exiting...");
             return false;
@@ -474,7 +474,7 @@ bool load_config(char configPath[PATH_MAX], struct config_params *p, bool colors
     // create default shader files if they do not exist
     char *shaderPath = malloc(sizeof(char) * PATH_MAX);
     sprintf(shaderPath, "%s/shaders", cava_config_home);
-    mkdir(shaderPath, 0777);
+    mkdir(shaderPath);
 
     for (int i = 0; i < NUMBER_OF_SHADERS; i++) {
         char *shaderFile = malloc(sizeof(char) * PATH_MAX);
