@@ -1,7 +1,6 @@
 #pragma once
 
 #include <errno.h>
-#include <fcntl.h>
 #include <inttypes.h>
 #include <pthread.h>
 #include <stdio.h>
@@ -10,6 +9,7 @@
 
 #ifndef _MSC_VER
 #include <unistd.h>
+#include <fcntl.h>
 #endif
 
 // number of samples to read from audio source per channel
