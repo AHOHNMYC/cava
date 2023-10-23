@@ -50,7 +50,7 @@ jobs:
       - name: Prepare dist
         run: |
             cd dist/$MSYSTEM_CARCH
-            [ $MSYSTEM = 'MINGW32' ] && cp `whereis libgcc_s_dw2-1.dll | cut -d' ' -f2` .
+            test $MSYSTEM = 'MINGW32' && cp `whereis libgcc_s_dw2-1.dll | cut -d' ' -f2` .
       - name: Upload build
         uses: actions/upload-artifact@v3
         with:
