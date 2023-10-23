@@ -22,7 +22,7 @@ jobs:
       - name: Generate configure
         run: ./autogen.sh
       - name: Run ./configure
-        run: ./configure --enable-debug
+        run: ./configure
       - name: Run make
         run: make
       - name: Copy dependencies
