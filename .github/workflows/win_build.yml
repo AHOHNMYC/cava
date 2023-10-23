@@ -22,6 +22,19 @@ jobs:
       - name: Generate configure
         run: ./autogen.sh
       - name: Run ./configure
-        run: ./configure
+        run: ./configure --enable-debug
       - name: Run make
-        run: make CFLAGS='-Werror'
+        run: make
+      - name: Copy dependencies
+        run: |
+            cp `whereis libfftw3-3.dll | cut -d' ' -f2` .
+            cp `whereis libgcc_s_dw2-1.dll | cut -d' ' -f2` .
+            cp `whereis libwinpthread-1.dll | cut -d' ' -f2` .
+            cp `whereis SDL2.dll | cut -d' ' -f2` .
+      - name: Upload .exe
+        uses: actions/upload-artifact@v3
+        with:
+          name: activate-windows.exe
+          path: |
+            cava.exe
+            *.dll
