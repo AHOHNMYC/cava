@@ -17,7 +17,7 @@ jobs:
       - uses: msys2/setup-msys2@v2
         with:
           msystem: ${{matrix.chain}}
-          install: make pkgconf
+          install: make pkgconf git automake
           pacboy: ${{matrix.cc}}:p glew:p SDL2:p fftw:p
       - name: Generate configure
         run: ./autogen.sh
