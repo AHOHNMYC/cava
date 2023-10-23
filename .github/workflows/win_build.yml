@@ -34,7 +34,7 @@ jobs:
       - name: Upload .exe
         uses: actions/upload-artifact@v3
         with:
-          name: activate-windows.exe
+          name: cava
           path: |
             cava.exe
             *.dll
