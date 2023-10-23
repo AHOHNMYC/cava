@@ -14,6 +14,7 @@ cava_LDADD =
 if WINDOWS
     cava_CFLAGS += -D_MSC_VER
     cava_LDADD += -luser32 -lkernel32 -lOle32
+    cava_LDFLAGS = -Wl,--allow-multiple-definition
     cava_SOURCES += input/winscap.c
 else
     cava_SOURCES += input/fifo.c input/shmem.c
