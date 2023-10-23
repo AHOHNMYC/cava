@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <windows.h>
 
-#include <functiondiscoverykeys.h>
+#include <functiondiscoverykeys_devpkey.h>
 
 #include "input/common.h"
 
