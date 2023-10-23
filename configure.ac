@@ -353,6 +353,10 @@ case "${host_os}" in
         AC_MSG_NOTICE([FreeBSD detected])
         build_linux=yes
         ;;
+    windows*)
+        AC_MSG_NOTICE([Windows detected])
+        build_windows=yes
+        ;;
     *)
         AC_MSG_ERROR(["OS $host_os is not supported"])
         ;;
@@ -361,6 +365,7 @@ esac
 # Pass the conditionals to automake
 AM_CONDITIONAL([LINUX], [test "$build_linux" = "yes"])
 AM_CONDITIONAL([OSX], [test "$build_mac" = "yes"])
+AM_CONDITIONAL([WINDOWS], [test "$build_windows" = "yes"])
 
 
 AC_CONFIG_FILES([Makefile])
