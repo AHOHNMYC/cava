@@ -1,0 +1,27 @@
+name: Windows build
+on: [push, pull_request]
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    strategy:
+      matrix:
+        include:
+          - {chain: mingw32, cc: gcc}
+          - {chain: mingw64, cc: gcc}
+          - {chain: clang64, cc: clang}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: ${{matrix.chain}}
+          install: make pkgconf
+          pacboy: ${{matrix.cc}}:p glew:p SDL2:p fftw:p
+      - name: Generate configure
+        run: ./autogen.sh
+      - name: Run ./configure
+        run: ./configure
+      - name: Run make
+        run: make CFLAGS='-Werror'
