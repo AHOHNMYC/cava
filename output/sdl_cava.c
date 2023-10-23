@@ -1,9 +1,7 @@
 #ifdef _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS 1
-#include <SDL.h>
-#else
-#include <SDL2/SDL.h>
 #endif
+#include <SDL2/SDL.h>
 
 #include "output/sdl_cava.h"
 
