@@ -333,7 +333,7 @@ case "${host_os}" in
         AC_MSG_NOTICE([FreeBSD detected])
         build_linux=yes
         ;;
-    windows*)
+    mingw*)
         AC_MSG_NOTICE([Windows detected])
         build_windows=yes
         ;;
