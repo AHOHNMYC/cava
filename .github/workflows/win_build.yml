@@ -31,9 +31,9 @@ jobs:
             cd dist/$MSYSTEM_CARCH
             cp ../../cava.exe cava_$MSYSTEM_CARCH.exe
             cp `whereis libfftw3-3.dll | cut -d' ' -f2` .
-            cp `whereis libgcc_s_dw2-1.dll | cut -d' ' -f2` .
             cp `whereis libwinpthread-1.dll | cut -d' ' -f2` .
             cp `whereis SDL2.dll | cut -d' ' -f2` .
+            [ $MSYSTEM = 'MINGW32' ] && cp `whereis libgcc_s_dw2-1.dll | cut -d' ' -f2` .
       - name: Upload build
         uses: actions/upload-artifact@v3
         with:
